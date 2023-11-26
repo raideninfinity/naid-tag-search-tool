@@ -12,31 +12,80 @@
     <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 </head>
 <body>
-    <div class="w3-bar w3-black" id="div-header-bar">
-        <div class="w3-bar-item">NAID3 Tag Search <span class="w3-small">by RaidenInfinity</span></div>
+    <!-- Header -->
+    <div class="w3-bar" id="div-header-bar" style="background-color: rgb(48, 0, 48);">
+        <div class="w3-bar-item"><iconify-icon inline icon="mdi:art" height="1.25em" style="vertical-align: -0.25em"></iconify-icon> NAID3 Tag Search <span class="w3-small">by RaidenInfinity</span></div>
         <div class="w3-dropdown-hover w3-right">
             <button class="w3-button">
                 <iconify-icon inline icon="mdi:menu" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
                 <iconify-icon inline icon="mdi:menu-down" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
             </button>
-            <div class="w3-dropdown-content w3-bar-block w3-border dark-item" style="right:0">
-                <a href="javascript:void(0);" id="link-guide" class="w3-bar-item w3-button">
-                    <iconify-icon inline icon="mdi:help-box" height="1.25em" style="vertical-align: -0.25em"></iconify-icon> Guide</a>
-                <a href="javascript:void(0);" id="link-settings" class="w3-bar-item w3-button">
-                    <iconify-icon inline icon="mdi:cog-box" height="1.25em" style="vertical-align: -0.25em"></iconify-icon> Settings</a>
+            <div id="dropdown-content-0" class="w3-dropdown-content w3-bar-block w3-border dark-item" style="right:0">
+                <button id="link-guide" class="w3-bar-item w3-button">
+                    <iconify-icon inline icon="mdi:help-box" height="1.25em" style="vertical-align: -0.25em"></iconify-icon> Guide
+                </button>
+                <button href="javascript:void(0);" id="link-settings" class="w3-bar-item w3-button">
+                    <iconify-icon inline icon="mdi:cog-box" height="1.25em" style="vertical-align: -0.25em"></iconify-icon> Settings
+                </button>
             </div>
         </div> 
     </div>
-    <hr style="margin:0px; border-color: #5b5b5b;">
-    <div class="w3-container w3-padding lr-margin-auto" style="max-width: 720px;">
-        <div class="w3-bar w3-padding" style="display: flex;">
-            <a href="javascript:void(0);" class="w3-bar-item w3-button w3-black w3-border">
-                <iconify-icon inline icon="clarity:filter-solid" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
-            </a>  
+    <!-- Search Params -->
+    <hr style="margin:0px; border-color: #5b5b5b; margin-bottom: 8px;">
+    <div class="w3-container w3-padding lr-margin-auto" style="max-width: 768px;">
+        <div class="w3-bar flex">
+            <div class="w3-dropdown-click">
+                <button onclick="dropdownToggle()" class="w3-bar-block w3-button w3-black w3-border pad8800">
+                    <iconify-icon inline id="icon-filter" icon="clarity:filter-line" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
+                </button>  
+                <div id="dropdown-content-1" class="w3-dropdown-content w3-bar-block w3-border dark-item dropdown-item">
+                    <div class="w3-bar-item w3-button flex pad0808">
+                        <iconify-icon inline icon="mdi:pound" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
+                        <input id="input-limit" type="number" class="dropdown-num" value="20" max="1000" min="20" step="1">
+                    </div>   
+                    <div class="w3-bar-item w3-button flex pad0808">
+                        <iconify-icon inline icon="icon-park-outline:to-bottom" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
+                        <input id="input-maxp" type="number" class="dropdown-num" value="0" max="10000" min="0" step="1">
+                    </div>                    
+                    <div class="w3-bar-item w3-button flex pad0808">
+                        <iconify-icon inline icon="icon-park-outline:to-top" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
+                        <input id="input-minp" type="number" class="dropdown-num" value="10000" max="10000" min="0" step="1">
+                    </div>
+                    <div class="w3-bar-item w3-button flex pad0808">
+                        <div class="w3-center" onclick="dropdownToggle()">Apply</div>
+                    </div> 
+                </div>
+            </div>
             <input id="input-search" class="w3-bar-item w3-input w3-border w3-black" type="text" placeholder="Enter search term..." style="flex:1">
-            <a href="javascript:void(0);" class="w3-bar-item w3-button w3-black w3-border">
+            <button id="btn-search" class="w3-bar-item w3-button w3-black w3-border pad8800">
                 <iconify-icon inline icon="material-symbols:search-rounded" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
-            </a>              
+            </button>              
+        </div>
+    </div>
+    <!-- Info -->
+    <div class="lr-margin-auto w3-small" style="max-width: 1024px; padding: 0px 16px 0px 16px" id="div-info">
+        <div class="w3-container w3-center" style="padding: 0">
+            <span id="span-info">-</span>
+        </div>
+        <div class="w3-container w3-center">
+            <button id="btn-prev-page" class="w3-bar-item w3-button w3-border page-button" disabled>
+                <iconify-icon inline icon="icon-park-solid:left-one" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
+            </button>
+            <button id="btn-goto-page" class="w3-bar-item w3-button w3-border page-button" style="width: 60%" disabled>
+                <span id="span-page">- / -</span>
+            </button>
+            <button id="btn-next-page" class="w3-bar-item w3-button w3-border page-button" disabled>
+                <iconify-icon inline icon="icon-park-solid:right-one" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
+            </button>
+        </div>   
+    </div>
+    <!-- Table -->
+    <div style="max-height: 80vh; overflow-y: auto;">
+        <div class="w3-container w3-padding lr-margin-auto" style="max-width: 1024px;" id="div-table">
+            <table class="w3-table-all w3-hoverable table-style th-outline" id="table1">
+                <tr id="table-row1" class="header-color th-outline"><th>&nbsp;</th><th></th></tr>
+                <tr><td>&nbsp;</td><td></td></tr><tr><td>&nbsp;</td><td></td></tr>
+            </table>
         </div>
     </div>
 </body>
