@@ -9,18 +9,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="{{url_for('static', filename='styles.css')}}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 </head>
 <body>
-    <div id="main">
-        <div class="w3-bar w3-teal">
-            <div class="w3-bar-item">NAID3 Tag Search <span class="w3-small">by RaidenInfinity</span></div>
-            <div class="w3-dropdown-hover w3-right">
-                <button class="w3-button"><i class="fa fa-caret-down"></i></button>
-                <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
-                  <a href="javascript:void(0);" id="link-guide" class="w3-bar-item w3-button"><i class="fas fa-question-circle"></i> Guide</a>
-                  <a href="javascript:void(0);" id="link-settings" class="w3-bar-item w3-button"><i class="fas fa-cog"></i> Settings</a>
-                </div>
-            </div> 
+    <div class="w3-bar w3-black" id="div-header-bar">
+        <div class="w3-bar-item">NAID3 Tag Search <span class="w3-small">by RaidenInfinity</span></div>
+        <div class="w3-dropdown-hover w3-right">
+            <button class="w3-button">
+                <iconify-icon inline icon="mdi:menu" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
+                <iconify-icon inline icon="mdi:menu-down" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
+            </button>
+            <div class="w3-dropdown-content w3-bar-block w3-border dark-item" style="right:0">
+                <a href="javascript:void(0);" id="link-guide" class="w3-bar-item w3-button">
+                    <iconify-icon inline icon="mdi:help-box" height="1.25em" style="vertical-align: -0.25em"></iconify-icon> Guide</a>
+                <a href="javascript:void(0);" id="link-settings" class="w3-bar-item w3-button">
+                    <iconify-icon inline icon="mdi:cog-box" height="1.25em" style="vertical-align: -0.25em"></iconify-icon> Settings</a>
+            </div>
+        </div> 
+    </div>
+    <hr style="margin:0px; border-color: #5b5b5b;">
+    <div class="w3-container w3-padding lr-margin-auto" style="max-width: 720px;">
+        <div class="w3-bar w3-padding" style="display: flex;">
+            <a href="javascript:void(0);" class="w3-bar-item w3-button w3-black w3-border">
+                <iconify-icon inline icon="clarity:filter-solid" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
+            </a>  
+            <input id="input-search" class="w3-bar-item w3-input w3-border w3-black" type="text" placeholder="Enter search term..." style="flex:1">
+            <a href="javascript:void(0);" class="w3-bar-item w3-button w3-black w3-border">
+                <iconify-icon inline icon="material-symbols:search-rounded" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
+            </a>              
         </div>
     </div>
 </body>

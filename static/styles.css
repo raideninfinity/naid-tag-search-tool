@@ -5,6 +5,16 @@ code {
     padding-right: 2px;
 }
 
+body{
+    background-color: #202225;
+    color: white;
+}
+
+.dark-item {
+    background-color: #292b2f;
+    color: white;    
+}
+
 #loading-overlay {
     display: none;
     position: fixed;
