@@ -12,13 +12,8 @@ def to_int(val, *, default=0):
     except Exception:
         return default
 
-def to_str(val, *, default=''):
-    if val == None: return default
-    try:
-        return str(val)
-    except Exception:
-        return default
-
+def clamp(val, btm, top):
+    return min(top, max(btm, val))
 
 
 
