@@ -4,9 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="data:;base64,=">
     <title>NAIDv3 Tag Search</title>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="{{url_for('static', filename='script.js')}}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="{{url_for('static', filename='styles.css')}}" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
@@ -41,15 +40,15 @@
                 <div id="dropdown-content-1" class="w3-dropdown-content w3-bar-block w3-border dark-item dropdown-item">
                     <div class="w3-bar-item w3-button flex pad0808">
                         <iconify-icon inline icon="mdi:pound" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
-                        <input id="input-limit" type="number" class="dropdown-num" value="20" max="1000" min="20" step="1">
+                        <input id="input-limit" type="number" class="dropdown-num" value="20" max="1000" min="20" step="10">
                     </div>   
                     <div class="w3-bar-item w3-button flex pad0808">
                         <iconify-icon inline icon="icon-park-outline:to-bottom" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
-                        <input id="input-maxp" type="number" class="dropdown-num" value="0" max="10000" min="0" step="1">
+                        <input id="input-minp" type="number" class="dropdown-num" value="0" max="10000" min="0" step="10">
                     </div>                    
                     <div class="w3-bar-item w3-button flex pad0808">
                         <iconify-icon inline icon="icon-park-outline:to-top" height="1.25em" style="vertical-align: -0.25em"></iconify-icon>
-                        <input id="input-minp" type="number" class="dropdown-num" value="10000" max="10000" min="0" step="1">
+                        <input id="input-maxp" type="number" class="dropdown-num" value="10000" max="10000" min="0" step="10">
                     </div>
                     <div class="w3-bar-item w3-button flex pad0808">
                         <div class="w3-center" onclick="dropdownToggle()">Apply</div>
@@ -64,7 +63,7 @@
     </div>
     <!-- Info -->
     <div class="lr-margin-auto w3-small" style="max-width: 1024px; padding: 0px 16px 0px 16px" id="div-info">
-        <div class="w3-container w3-center" style="padding: 0">
+        <div class="w3-container w3-center" style="padding: 0; padding-bottom: 4px;">
             <span id="span-info">-</span>
         </div>
         <div class="w3-container w3-center">
@@ -80,13 +79,22 @@
         </div>   
     </div>
     <!-- Table -->
-    <div style="max-height: 80vh; overflow-y: auto;">
-        <div class="w3-container w3-padding lr-margin-auto" style="max-width: 1024px;" id="div-table">
+    <div style="max-height: 80vh; overflow-y: scroll; margin-top: 4px;">
+        <div class="w3-container w3-padding lr-margin-auto" style="max-width: 1024px; padding-top: 0px !important" id="div-table">
             <table class="w3-table-all w3-hoverable table-style th-outline" id="table1">
-                <tr id="table-row1" class="header-color th-outline"><th>&nbsp;</th><th></th></tr>
-                <tr><td>&nbsp;</td><td></td></tr><tr><td>&nbsp;</td><td></td></tr>
+                <tr id="table-row1" class="header-color th-outline"><th>
+                    <button id="btn-back" class="w3-button inline-button" disabled>
+                        <iconify-icon inline icon="material-symbols:arrow-back-ios-rounded" height="1.0em" style="vertical-align: -0.125em"></iconify-icon>
+                    </button>
+                </th><th></th></tr>
+                <tr><td>&nbsp;</td><td></td></tr><tr>
             </table>
+            <div class="w3-bar pad-bar">&nbsp;</div>
         </div>
+    </div>
+    <!-- Overlay -->
+    <div id="loading-overlay">
+        <div id="loading-spinner"></div>
     </div>
 </body>
 </html>

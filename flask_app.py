@@ -51,7 +51,7 @@ def search():
 
 def search_get_params(args):
     params = {}
-    params["term"] = (args.get("term", ""))
+    params["term"] = (args.get("term", "")).lower()
     for field in ["limit", "page", "min_power", "max_power", "filter"]:
         params[field] = to_int(args.get(field, None))
     return params
@@ -99,7 +99,7 @@ def perform_search(params):
             prefix = prefix.replace("z/", "").strip()
             for z in Z_GROUPS:
                 if z.startswith(prefix):
-                    z_tags += [x for x in tags if z_check_category(tag.get("z_category"), Z_GROUPS[z])]        
+                    z_tags += [tag for tag in tags if z_check_category(tag.get("z_category"), Z_GROUPS[z])]        
             tags = z_tags
         #Filter by Power
         min_power, max_power = params["min_power"], params["max_power"]
@@ -183,6 +183,31 @@ def g_show_group(term, result):
 def z_check_category(z_list, term):
     if z_list == None: return False
     return term in z_list
+
+def g_get_tags(prefix):
+    prefix = [x.strip() for x in prefix.replace("g/", "").split("/", 2)]
+    prefix += [None] * (3 - len(prefix))
+    keys = []
+    tag_groups = TAG_GROUPS
+    m, g, s = prefix[0], prefix[1], prefix[2]
+    if g is None and s is None:
+        majorgroups = [tag_groups[x] for x in tag_groups if x.startswith(m)]
+        for majorgroup in majorgroups:
+            groups = [majorgroup[x] for x in majorgroup]
+            for group in groups:
+                subgroups = [group[x] for x in group]
+                for subgroup in subgroups: keys += subgroup
+    elif g is not None and s is None:
+        majorgroup = tag_groups.get(m, {})
+        groups = [majorgroup[x] for x in majorgroup if x.startswith(g)]
+        for group in groups:
+            subgroups = [group[x] for x in group]
+            for subgroup in subgroups: keys += subgroup
+    elif g is not None and s is not None:
+        group = tag_groups.get(m, {}).get(g, {})
+        subgroups = [group[x] for x in group if x.startswith(s)]
+        for subgroup in subgroups: keys += subgroup
+    return keys
 
 #Main
 if __name__ == "__main__":

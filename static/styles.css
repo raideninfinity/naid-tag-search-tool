@@ -5,9 +5,10 @@ code {
     padding-right: 2px;
 }
 
-body{
+html, body{
     background-color: #000000;
     color: white;
+    overflow-y: hidden;
 }
 
 .dropdown-item{
@@ -156,6 +157,16 @@ body{
 .th-outline{
     outline: 1px solid #aaa;
     outline-offset: -1px;
+}
+
+.inline-button{
+    padding: 0px 0px 0px 4px !important;
+}
+
+@media only screen and (max-width: 720px) {
+    .pad-bar{
+        height: 100px;
+    }
 }
 
 /*
