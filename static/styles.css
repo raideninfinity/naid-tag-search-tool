@@ -1,0 +1,92 @@
+code {
+    background: black;
+    color: white;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+#loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#loading-spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.icon-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    min-width: 120px;
+    max-width: 240px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.icon-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.lr-margin-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lr-padding-4px {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.copy-tooltip {
+    display: none;
+    position: absolute;
+    background-color: #555;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    transition: opacity 0.3s;
+}
+
+/*
+#howToUsePanel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+}
+*/

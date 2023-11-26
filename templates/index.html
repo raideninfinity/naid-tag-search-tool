@@ -1,5 +1,27 @@
+<!DOCTYPE html>
 <html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:;base64,=">
+    <title>NAIDv3 Tag Search</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="{{url_for('static', filename='styles.css')}}" rel="stylesheet">
+</head>
 <body>
-    Hello World!!!!
+    <div id="main">
+        <div class="w3-bar w3-teal">
+            <div class="w3-bar-item">NAID3 Tag Search <span class="w3-small">by RaidenInfinity</span></div>
+            <div class="w3-dropdown-hover w3-right">
+                <button class="w3-button"><i class="fa fa-caret-down"></i></button>
+                <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
+                  <a href="javascript:void(0);" id="link-guide" class="w3-bar-item w3-button"><i class="fas fa-question-circle"></i> Guide</a>
+                  <a href="javascript:void(0);" id="link-settings" class="w3-bar-item w3-button"><i class="fas fa-cog"></i> Settings</a>
+                </div>
+            </div> 
+        </div>
+    </div>
 </body>
 </html>
