@@ -1,8 +1,9 @@
 code {
-    background: black;
-    color: white;
+    background: rgb(200, 200, 200);
+    color: black;
     padding-left: 2px;
     padding-right: 2px;
+    font-weight: bold;
 }
 
 html, body{
@@ -89,18 +90,21 @@ html, body{
     visibility: hidden;
     min-width: 120px;
     max-width: 240px;
-    background-color: #333;
+    background-color: #1f1f1f;
     color: #fff;
     text-align: center;
     padding: 5px;
     border-radius: 6px;
     position: absolute;
     z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
+    top: 50%;
+    right: 50%;
+    margin-left: 4px;
     opacity: 0;
     transition: opacity 0.3s;
+    border-color: #555;
+    border-style: solid;
+    border-width: 1px;
 }
 
 .icon-tooltip {
@@ -121,11 +125,14 @@ html, body{
 .copy-tooltip {
     display: none;
     position: absolute;
-    background-color: #555;
+    background-color: #1f1f1f;
     color: #fff;
     padding: 5px;
     border-radius: 5px;
     transition: opacity 0.3s;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #555;
 }
 
 .table-style{
@@ -168,6 +175,21 @@ html, body{
         height: 100px;
     }
 }
+
+.c-none { color: white; }
+.c-general { color:rgb(175, 255, 255); } 
+.c-artist { color: rgb(255, 180, 180); }
+.c-copyright { color: rgb(255, 190, 255);}
+.c-character { color: rgb(158, 255, 158);}
+.c-meta { color: rgb(255, 220, 156); }
+.td-c { white-space: nowrap;}
+
+@media only screen and (min-width: 720px) {
+    .td-c {
+        width: 120px;
+    }
+}
+
 
 /*
 #howToUsePanel {

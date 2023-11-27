@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html style="overflow-y: scroll !important;">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:;base64,=">
+    <title>NAIDv3 Tag Search - Guide</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="{{url_for('static', filename='styles.css')}}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <div class="w3-bar" id="div-header-bar" style="background-color: rgb(48, 0, 48);">
+        <div class="w3-bar-item"><iconify-icon inline icon="mdi:art" height="1.25em" style="vertical-align: -0.25em"></iconify-icon> NAID3 Tag Search <span class="w3-small">by RaidenInfinity</span></div>
+        <a class="w3-bar-item w3-button w3-right" href="/">
+            <iconify-icon inline icon="icon-park-solid:back" height="1.25em" style="vertical-align: -0.25em"></iconify-icon> Back
+        </a>
+    </div>
+    <hr style="margin:0px; border-color: #5b5b5b; margin-bottom: 24px;">
+    <!-- Guide -->
+    <div class="w3-margin">
+        <div class="w3-border lr-margin-auto" style="max-width: 1024px;">
+            <div class="w3-bar" id="div-header-bar" style="background-color: rgb(48, 0, 48);">
+                <div class="w3-padding w3-center w3-large w3-border">How to Use</div>
+            </div>
+            <div class="w3-panel">
+                <ol>
+                    <h3><li>Searching</li></h3>
+                    <ul>
+                        <li>To search, hit <code>Enter</code> key or press the <iconify-icon inline icon="material-symbols:search-rounded" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> button.</li>
+                        <li>Click on <iconify-icon inline icon="mdi:cog-outline" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> to show the settings. Click again to close the menu.</li>
+                        <li><b>Settings:</b></li>
+                        <ul>
+                            <li><iconify-icon inline icon="mdi:pound" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> Limit: Number of tags in one page. (20 to 1000)</li>
+                            <li><iconify-icon inline icon="icon-park-outline:to-bottom" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> Min Power: Hide tags with power <b>lower</b> than this value. (0 to 10000).</li>
+                            <li><iconify-icon inline icon="icon-park-outline:to-top" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> Max Power: Hide tags with power <b>higher</b> than this value (1 to 10000).</code></i></li>
+                            <li><iconify-icon inline icon="clarity:filter-line" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> Filter: Hide tags that are not in Danbooru or not in NAID Tag Suggest.   </li>
+                        </ul>
+                        <li>Click on <code>Apply</code> button to close the menu <b>and</b> perform a search.</li>
+                        <li>Please note that this tool only supports NovelAI Anime Diffusion version 3.</li>
+                    </ul>
+                    <h3><li>Tag Listing</li></h3>
+                    <ul>
+                        <li>Tags are listed in a table by page. Click on <iconify-icon inline icon="icon-park-solid:left-one" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> or <iconify-icon inline icon="icon-park-solid:right-one" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> to change page.</li> 
+                        <li>Click on <code>Current Page / Total Pages</code> to jump to a page.</li>   
+                        <li>These fields are shown in the table:</li>
+                        <ul>
+                            <li><b>Tag Name</b></li>
+                            <ul>
+                                <li>The first column lists the tag's name.</li>
+                                <li>Tags are colored based on Danbooru category: <span class="c-general"><b>general</b></span>, <span class="c-artist"><b>artist</b></span>, <span class="c-copyright"><b>copyright</b></span>, <span class="c-character"><b>character</b></span>, <span class="c-meta"><b>meta</b></span>, and <span class="c-none"><b>none</b></span>.</li>
+                                <li>Click on <iconify-icon inline icon="fa-regular:copy" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> to copy the tag to clipboard.</li>
+                                <li>For Danbooru tags, the tag name links to the <a href="https://danbooru.donmai.us/wiki_pages">wiki page</a>. <i>Note: The wiki page may or may not exist.</i></li>
+                            </ul>
+                            <li><b>Tag Category</b></li>
+                            <ul>
+                                <li>The second column lists the tag's Danbooru category.</li>
+                                <li>If the tag is present in <a href="https://zele.st"><b>u/Carlyone</b></a>'s <a href="https://zele.st/NovelAI/">NovelAI Tag Experiments</a>, it is marked with <iconify-icon inline icon="fa-solid:plus-square" height="1.5em" style="vertical-align: -0.25em"></iconify-icon>. Mouse over the icon to see the details.</li>
+                            </ul>
+                            <li><b>Tag Power</b></li>
+                            <ul>
+                                <li>The third column lists the tag's <b>power</b>.</li>
+                                <li><iconify-icon inline icon="fa-solid:pen-nib" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> means that NovelAI's Tag Suggest system <b>has</b> the tag, and its <b>count</b> is shown. This value represents the knowledge the model has about the tag, and shows as the white circle in the official UI's tag suggest feature. It is <b>reliable</b>.</li>
+                                <li><iconify-icon inline icon="fa-solid:image" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> means that NovelAI's Tag Suggest system <b>does not have</b> the tag, so the <b>number of images</b> on Danbooru is shown instead (capped at 10000). This might be due to the training data not having the tag, being aliased to something else, or blocked from suggestion (NSFW and artist tags especially). It is <b>not reliable</b> so take this value with a fine grain of salt.</li>
+                                <li>Mouse over the icon to see <b>both</b> values. The full value of <iconify-icon inline icon="fa-solid:image" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> will be shown.</li>
+                                <li>The training data cut off date is around September 2023 for NAIDv3. The Danbooru image count was scraped around 17 to 20 November 2023.</li>
+                            </ul>
+                        </ul>
+                        <li>Tags are ordered by <iconify-icon inline icon="fa-solid:pen-nib" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> count followed by <iconify-icon inline icon="fa-solid:image" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> count.</li>
+                    </ul>
+                    <h3><li>Prefixes</li></h3>
+                    <ul>
+                        <li>You can add <b>prefixes</b> to filter by category.</li>
+                        <li>The format is <code>prefix: term</code>. The space after <code>:</code> is <b>optional</b>.</li>
+                        <li>The list of supported prefixes are:</li>
+                        <ul>
+                            <li>Danbooru tag categories: <code>general</code>, <code>artist</code>, <code>copyright</code>, <code>character</code>, <code>meta</code>, and <code>none</code></li>
+                            <li><i>Short form:</i> <code>g</code>, <code>a</code>, <code>r</code>, <code>c</code>, <code>m</code>, and <code>0</code>.</li>
+                            <li>NAIDv3 custom tags: <code>quality</code>, <code>aesthetic</code>, and <code>year</code>.</li>
+                            <li><i>Short form:</i> <code>q</code>, <code>e</code>, and <code>y</code>.</li>
+                            <li>Tag Groups: Read the <b>Tag Groups</b> section for more info.</li>
+                        </ul>
+                        <li>Example of prefix usage: <code>character: blue archive</code>, <code>g:red</code>, <code>q:</code>.</li>
+                    </ul>
+                    <h3><li>Suffixes</li></h3>
+                    <ul>
+                        <li>You can add <b>suffixes</b> to the search term to change the word matching method.</li>
+                        <li>The <code>#</code> suffix forces <b>exact tag match</b>. Example: <code>short#</code> can only match <b>short</b>.</li>
+                        <li>The <code>@</code> suffix checks if the tag <b>starts with</b> the search term. Example: <code>color@</code> matches <b>colored skin</b> but not <b>spot color</b> or <b>multicolored eyes</b>. Adding <code>^</code> before the search term has the <b>same</b> effect. Example: <code>^eye</code> is the same as <code>eye@</code>.</li>
+                        <li>The <code>$</code> suffix checks if the tag <b>ends with</b> the search term. Example: <code>color$</code> matches <b>spot color</b> but not <b>colored skin</b> or <b>multicolored eyes</b>.</li>
+                        <li>The <code>%</code> suffix activates <b>word matching</b>. Example: <code>short%</code> matches <b>short hair</b> but not <b>shorts</b>.</li>
+                        <li>Suffixes <b>cannot</b> be combined. Only one will be used, checked <b>in order</b> as listed above.</li>
+                        <li>Prefixes can be used together. Example: <code>copyright:^blue</code>, <code>g: man%</code>, and <code>c:eye$</code>.</li>
+                    </ul>
+                    <h3><li>Tag Groups</li></h3>
+                    <ul>
+                        <li>When <code>z/</code> or <code>g/</code> is searched, <b>Tag Group Mode</b> is activated.</li>
+                        <li>Try it yourself. You'll learn how it works as you use it more.</li>
+                        <li><code>z/</code> is related to <a href="https://zele.st/NovelAI/">NovelAI Tag Experiments</a>.</li>
+                        <li><code>g/</code> is basically <a href="https://danbooru.donmai.us/wiki_pages/tag_groups">Danbooru Tag Groups</a>.</li>
+                        <li>The <iconify-icon inline icon="mdi:search-plus-outline" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> button explores subgroups of <code>g/</code> tag groups.</li>
+                        <li>The <iconify-icon inline icon="mdi:tags" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> or <iconify-icon inline icon="material-symbols:arrow-forward-ios" height="1.5em" style="vertical-align: -0.25em"></iconify-icon> buttons show the tags listed under this tag group. It basically adds <code>:</code> and makes it a prefix. Example: <code>z/verbs:</code>, <code>g/body/face/emotions:</code>, and <code>g/attire:</code></li>
+                        <li>The <iconify-icon inline icon="material-symbols:arrow-back-ios-rounded" height="1.5em" style="vertical-align: -0.25em;"></iconify-icon> button is used to go back one group level <b>or</b> go back from tag listing to tag group exploring.</li>
+                    </ul>
+                    <h3><li>Tag Groups</li></h3>
+                    <ul>
+                        <li>This tool is made by RaidenInfinity.</li>
+                        <li>If you have questions or suggestions, or stuff broke, find me in Discord.</li>
+                        <li>I am in both NovelAI official server as well as the unofficial NSFW server.</li>
+                        <li>Don't spam it too often though. Can't expect much from free hosting.</li>
+                    </ul>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="w3-center w3-container w3-margin">
+        <a href="#div-header-bar" class="w3-button w3-border" style="background-color: rgb(48, 0, 48); min-width: 10%;">
+            <iconify-icon inline icon="mdi:arrow-top-bold" height="1.25em" style="vertical-align: -0.25em"></iconify-icon> Top
+        </a>
+    </div>
+</body>
+</html>

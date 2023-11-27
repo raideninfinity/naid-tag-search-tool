@@ -36,6 +36,10 @@ def _corsify_actual_response(response, code=200):
 def index():
     return render_template("index.html")
 
+@app.route('/guide')
+def guide():
+    return render_template("guide.html")
+
 #Search
 @app.route('/search')
 def search():
@@ -83,7 +87,7 @@ def perform_search(params):
         return g_show_group(term, result)
 
     #Search Tags
-    keys = list(get_tag_keys(prefix, term))
+    keys = list(set(get_tag_keys(prefix, term)))
     result["count"] = 0
     tags = []
     if len(keys) > 0:
