@@ -34,6 +34,10 @@ def _corsify_actual_response(response, code=200):
 #Index
 @app.route('/')
 def index():
+    return '<script>window.location.replace("/naidv3_tag_search");</script>'
+
+@app.route('/naidv3_tag_search')
+def tool():
     return render_template("index.html")
 
 @app.route('/guide')
