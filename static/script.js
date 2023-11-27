@@ -140,7 +140,18 @@ $(document).ready(function(){
 
     function displayTagData(data){
         clearTable(); 
+        var table = $("#table1");
         $("#table-row1").append(`<th>${backBtn} Tag Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th>Category</th><th>Power</th>`);
+        $.each(data.tags, function(index, item) {
+            
+        });
+        if (data.count != 0){
+            $("#span-info").text(`Showing ${data.count} result(s) for "${data.params.term}".`);
+        }
+        else{
+            table.append(`<tr><td><i>No Search Results.</i></td><td></td></tr>`)
+            $("#span-info").text(`No results found for "${data.params.term}".`);
+        }
         setBtnBack(data.params.term);
     }
 
