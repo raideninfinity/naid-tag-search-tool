@@ -144,6 +144,7 @@ $(document).ready(function(){
         $.each(data.tags, function(index, item) {
             let tag_name = item.tag_name;
             let d_category = item.d_category;
+            let d_group = item.d_group;
             let z_category = item.z_category;
             let d_count = item.d_count;
             let n_count = item.n_count;
@@ -168,7 +169,13 @@ $(document).ready(function(){
                 z_categories = z_categories.replace(/ /g, "&nbsp;");
                 z_icon = ` <div class="icon-tooltip c-none">${iconPlus}<div class="tooltip-text">${z_categories}</div></div>`
             }
-            row += `<td class="td-c">${d_category}${z_icon}</td>`
+            let category = d_category;
+            if (d_group){
+                let d_groups = d_group.join('<br>');
+
+                category = `<div class="icon-tooltip"><b>${d_category}</b><div class="tooltip-text">${d_groups}</div></div>`
+            }
+            row += `<td class="td-c">${category}${z_icon}</td>`
             //Insert Count
             let iconN = `<iconify-icon inline icon="fa-solid:pen-nib" height="1.0em" style="vertical-align: -0.125em"></iconify-icon>`;
             let iconD = `<iconify-icon inline icon="fa-regular:image" height="1.0em" style="vertical-align: -0.125em"></iconify-icon>`;

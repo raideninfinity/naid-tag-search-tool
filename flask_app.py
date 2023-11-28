@@ -12,7 +12,7 @@ TAGS = load_json(f"{ROOT}dataset/dataset_tags.json")
 for tag in TAGS:
     item = TAGS[tag]
     for field in list(item.keys()):
-        if field not in ["tag_name", "n_count", "d_count", "d_category", "z_category"]:
+        if field not in ["tag_name", "n_count", "d_count", "d_category", "d_group", "z_category"]:
             del item[field]
         if "z_category" in item and len(item["z_category"]) == 0:
             del item["z_category"]

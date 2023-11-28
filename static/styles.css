@@ -89,7 +89,7 @@ html, body{
 .tooltip-text {
     visibility: hidden;
     min-width: 120px;
-    max-width: 240px;
+    max-width: 360px;
     background-color: #1f1f1f;
     color: #fff;
     text-align: center;
