@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAIDv3 Alpha Channel Metadata Extractor</title>
+</head>
+<body>
+    <h1>NAIDv3 Alpha Channel Metadata Extractor</h1>
+    <h3>Yes I'm THAT fucking lazy to bother CSS. No dark mode for you.</h3>
+    
+    <form id="imageForm" action="/process_image" method="post" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="file" accept="image/*" style="display: none;">
+        <input type="text" id="imageUrlInput" name="image_url" placeholder="Enter image URL" style="min-width: 300px;"">
+        <button type="button" onclick="uploadFromUrl()">Upload From URL</button>
+        <button type="button" onclick="uploadFile()">Upload Image</button>
+    </form>
+
+    <div id="dropArea" style="margin-top: 20px; border: 2px dashed #ccc; padding: 20px; text-align: center;">
+        <p>Drag and drop an image here!</p>
+    </div>
+
+    <div id="results" style="margin-top: 20px; max-width: 100vw"></div>
+
+    <script>
+        function uploadFile() {
+            var fileInput = document.getElementById('fileInput');
+            fileInput.click();
+
+            fileInput.addEventListener('change', function () {
+                submitForm();
+            });
+        }
+
+        function uploadFromUrl() {
+            var imageUrlInput = document.getElementById('imageUrlInput');
+            if (imageUrlInput.value.trim() !== '') {
+                submitForm();
+            }
+        }
+
+        function submitForm() {
+            var form = document.getElementById('imageForm');
+            var formData = new FormData(form);
+
+            fetch('/process_image', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                displayResults(data);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function displayResults(data) {
+            var resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            if ('error' in data) {
+                resultsDiv.innerHTML = '<p style="color: red;">Error: ' + data.error + '</p>';
+            } else {
+                resultsDiv.innerHTML = '<pre>' + data.metadata + '</pre>';
+            }
+        }
+
+        // Drag and drop event listeners
+        var dropArea = document.getElementById('dropArea');
+
+        dropArea.addEventListener('dragover', function (e) {
+            e.preventDefault();
+            dropArea.style.border = '2px solid #aaa';
+        });
+
+        dropArea.addEventListener('dragleave', function () {
+            dropArea.style.border = '2px dashed #ccc';
+        });
+
+        dropArea.addEventListener('drop', function (e) {
+            e.preventDefault();
+            dropArea.style.border = '2px dashed #ccc';
+
+            var files = e.dataTransfer.files;
+            if (files.length > 0) {
+                var file = files[0];
+                document.getElementById('fileInput').files = files;
+                submitForm();
+            }
+        });
+
+        // Clipboard paste event listener
+        document.addEventListener('paste', function (e) {
+            var items = e.clipboardData.items;
+
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+
+                if (item.type.indexOf('image') !== -1) {
+                    var file = item.getAsFile();
+                    var fileInput = document.getElementById('fileInput');
+                    fileInput.files = [file];
+                    submitForm();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

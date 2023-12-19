@@ -1,7 +1,10 @@
 #Imports
-from lib.func import load_json, to_int, clamp
+from lib.func import load_json, to_int, clamp, naiExtractData
 from lib.const import PREFIX_MAP, Z_GROUPS
 from flask import Flask, request, jsonify, make_response, render_template
+from PIL import Image
+from io import BytesIO
+import requests
 
 #Create Flask App
 app = Flask(__name__)
@@ -216,6 +219,30 @@ def g_get_tags(prefix):
         subgroups = [group[x] for x in group if x.startswith(s)]
         for subgroup in subgroups: keys += subgroup
     return keys
+
+#image
+
+@app.route('/alpha', methods=['GET'])
+def alpha():
+    return render_template("alpha.html")
+
+@app.route('/process_image', methods=['POST'])
+def process_image():
+    file = request.files['file']
+    image_url = request.form.get('image_url')
+
+    if file:
+        # Process image from file upload
+        image = Image.open(file)
+    elif image_url:
+        # Process image from URL
+        response = requests.get(image_url)
+        image = Image.open(BytesIO(response.content))
+    else:
+        return jsonify({'error': 'No file or URL provided'})
+
+    metadata = naiExtractData(image)
+    return jsonify({'metadata': metadata})
 
 #Main
 if __name__ == "__main__":
